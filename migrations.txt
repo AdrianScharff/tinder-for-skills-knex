@@ -1,0 +1,72 @@
+provider exports.up
+return knex.schema.hasTable('provider').then((exists) => {
+  if (!exists) {
+   return knex.schema.createTable('provider', (table) => {
+    table.increments('provider_id').primary()
+    table.string('name').notNullable()
+    table.string('last_name').notNullable()
+    table.integer('age')
+    table.text('description')
+   })
+  }
+ })
+
+provider exports.down
+return knex.schema.hasTable('provider').then((exists) => {
+  if (exists) {
+   return knex.schema.dropTable('provider')
+  }
+ })
+
+
+ skills exports.up
+ return knex.schema.hasTable('skill').then((exists) => {
+   if (!exists) {
+    return knex.schema.createTable('skill', (table) => {
+     table.increments('skill_id').primary()
+     table.string('skill_name', 150).notNullable()
+     table.text('skill_description')
+    })
+   }
+  })
+
+  skill exports.down
+  return knex.schema.hasTable('skill').then((exists) => {
+   if (exists) {
+    return knex.schema.dropTable('skill')
+   }
+  })
+
+
+
+  provider_skill exports.up
+  return knex.schema.createTable('provider_skill', (table) => {
+   table.integer('provider_id').unsigned().notNullable()
+   table.integer('skill_id').unsigned().notNullable()
+
+   table.primary(['provider_id', 'skill_id'])
+
+   table.foreign('provider_id').references('provider.provider_id').onDelete('CASCADE')
+   table.foreign('skill_id').references('skill.skill_id').onDelete('CASCADE')
+  })
+
+provider_skill exports.down
+return knex.schema.dropTableIfExists('provider_skill')
+
+hirer exports.up
+return knex.schema.hasTable('hirer').then((exists) => {
+  if (!exists) {
+   return knex.schema.createTable('hirer', (table) => {
+    table.increments('hirer_id').primary()
+    table.string('hirer_name').notNullable()
+    table.text('hirer_description')
+   })
+  }
+ })
+
+ hirer exports.down
+ return knex.schema.hasTable('hirer').then((exists) => {
+  if (exists) {
+   return knex.schema.dropTable('hirer')
+  }
+ })

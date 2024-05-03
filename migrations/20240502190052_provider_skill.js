@@ -9,6 +9,8 @@ exports.up = function(knex) {
 
    table.primary(['provider_id', 'skill_id'])
 
+   table.decimal('hourly_rate')
+
    table.foreign('provider_id').references('provider.provider_id').onDelete('CASCADE')
    table.foreign('skill_id').references('skill.skill_id').onDelete('CASCADE')
   })
