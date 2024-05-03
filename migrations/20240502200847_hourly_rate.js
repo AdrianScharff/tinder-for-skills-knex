@@ -9,7 +9,7 @@ exports.up = function (knex) {
     table.increments('hourly_rate_id').primary()
     table.decimal('hourly_rate').notNullable()
    })
-  }
+  }f
  })
 };
 
