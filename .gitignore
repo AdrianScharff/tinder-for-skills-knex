@@ -2,3 +2,5 @@
 MAlonzo/**
 
 .env
+
+node_modules
