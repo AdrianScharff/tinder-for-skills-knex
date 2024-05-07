@@ -33,10 +33,16 @@ const updateOneProvider = (req, res) => {
 }
 
 // DELETE
+const softDeleteOneProvider = (req, res) => {
+    modelProvider.softDelete(req.params.providerId)
+        .then(provider => res.status(204).send())
+        .catch(error => res.status(400).send(error))
+}
 
 module.exports = {
     findAllProviders,
     findOneProvider,
     createProvider,
-    updateOneProvider
+    updateOneProvider,
+    softDeleteOneProvider
 }

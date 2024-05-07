@@ -4,7 +4,7 @@
  */
 exports.up = function (knex) {
     return knex.schema.alterTable('provider', (table) => {
-        table.boolean('acive').notNullable().defaultTo(true)
+        table.boolean('active').notNullable().defaultTo(true)
         table.timestamp('created_at').defaultTo(knex.fn.now())
     })
 };

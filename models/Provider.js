@@ -1,4 +1,4 @@
-const { where } = require('../config')
+// const { where } = require('../config')
 const knex = require('../config')
 
 const create = (bodyProvider) => {
