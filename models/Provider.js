@@ -1,4 +1,3 @@
-// const { where } = require('../config')
 const knex = require('../config')
 
 const create = (bodyProvider) => {
@@ -36,10 +35,18 @@ const softDelete = (providerId) => {
         .where({ provider_id: providerId })
 }
 
+const destroy = (providerId) => {
+    return knex
+        .delete()
+        .from('provider')
+        .where({ provider_id: providerId })
+}
+
 module.exports = {
     create,
     findAll,
     findOne,
     update,
-    softDelete
+    softDelete,
+    destroy
 }

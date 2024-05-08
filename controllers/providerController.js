@@ -39,10 +39,17 @@ const softDeleteOneProvider = (req, res) => {
         .catch(error => res.status(400).send(error))
 }
 
+const destroyOneProvider = (req, res) => {
+    modelProvider.destroy(req.params.providerId)
+        .then(provider => res.status(204).send())
+        .catch(error => res.status(400).send(error))
+}
+
 module.exports = {
     findAllProviders,
     findOneProvider,
     createProvider,
     updateOneProvider,
-    softDeleteOneProvider
+    softDeleteOneProvider,
+    destroyOneProvider
 }
